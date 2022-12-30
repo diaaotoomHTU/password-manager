@@ -12,16 +12,16 @@
    <children>
       <AnchorPane prefHeight="292.0" prefWidth="311.0">
          <children>
-            <Label layoutX="125.0" layoutY="14.0" text="Login" AnchorPane.topAnchor="14.0">
+            <Label layoutX="123.0" layoutY="14.0" text="Login" AnchorPane.topAnchor="14.0">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="77.0" layoutY="203.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getPasswordManagerScene" prefHeight="30.0" prefWidth="149.0" text="Login" AnchorPane.bottomAnchor="30.0" />
-            <PasswordField layoutX="77.0" layoutY="145.0" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="145.0" />
-            <TextField layoutX="77.0" layoutY="87.0" AnchorPane.topAnchor="87.0" />
-            <Label layoutX="77.0" layoutY="70.0" text="Username" AnchorPane.leftAnchor="77.0" />
-            <Label layoutX="77.0" layoutY="128.0" text="Password" AnchorPane.leftAnchor="77.0" />
+            <Button layoutX="63.0" layoutY="197.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getPasswordManagerScene" prefHeight="36.0" prefWidth="181.0" text="Login" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="63.0" />
+            <PasswordField fx:id="password" layoutX="63.0" layoutY="142.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="142.0" />
+            <TextField fx:id="username" layoutX="63.0" layoutY="78.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="78.0" />
+            <Label layoutX="63.0" layoutY="58.0" text="Username" AnchorPane.leftAnchor="63.0" />
+            <Label layoutX="61.0" layoutY="122.0" text="Password" AnchorPane.leftAnchor="63.0" />
          </children>
       </AnchorPane>
    </children>

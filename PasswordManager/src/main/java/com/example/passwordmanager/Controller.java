@@ -10,13 +10,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Controller {
+
     @FXML
     private Label welcomeText;
 
@@ -29,6 +35,20 @@ public class Controller {
     private VBox passwordBox;
     @FXML
     private HBox passwordEntry;
+
+    public Connection getConnection() {
+        String jdbcURL = "jdbc:h2:./h2db";
+        String username = "sa";
+        String password = "sa";
+        Connection connection;
+        try {
+            connection = DriverManager.getConnection(jdbcURL, username, password);
+        } catch (SQLException e) {
+            connection = null;
+            e.printStackTrace();
+        }
+        return connection;
+    }
 
     @FXML
     protected void onNewButtonClick() {
@@ -54,8 +74,20 @@ public class Controller {
         passwordBox.getChildren().add(newPasswordEntry);
     }
 
+
     @FXML
-    protected void getPasswordManagerScene() throws IOException {
+    TextField username;
+
+    @FXML
+    TextField password;
+
+    @FXML
+    protected void getPasswordManagerScene() throws IOException, SQLException {
+        Connection connection = getConnection();
+        System.out.println(username.getText());
+        PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM pm_users WHERE id='Mexico'");
+        connection.close();
+
         Parent pane = FXMLLoader.load(getClass().getResource("password-manager.fxml"));
         Application.loadedStage.getScene().setRoot(pane);
         Application.loadedStage.sizeToScene();
