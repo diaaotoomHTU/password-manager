@@ -5,6 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 
 import java.io.IOException;
@@ -41,6 +47,25 @@ public class Application extends javafx.application.Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+        Controller controller = new Controller();
+        try {
+
+            System.out.println(controller.encrypt("masterpassword12","123"));
+//          System.out.println(controller.decrypt("masterpassword12", "kEiLVjJihS0p33yHpIT/hA=="));
+//          System.out.println(controller.decrypt("1234","v1tWATUl3oUWrkVH72HJNQ=="));
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalBlockSizeException e) {
+            throw new RuntimeException(e);
+        } catch (BadPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     static boolean tableExists(Connection connection) throws SQLException {
