@@ -1,8 +1,6 @@
 package com.example.passwordmanager;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 
 import javax.crypto.BadPaddingException;
@@ -73,6 +71,7 @@ public class MasterController {
         }
     }
 
+    @FXML
     protected void getPasswordManagerScene() throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, IOException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException {
         SceneController sceneController = new SceneController();
         sceneController.getPasswordManagerScene();

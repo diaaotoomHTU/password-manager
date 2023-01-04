@@ -1,6 +1,5 @@
 package com.example.passwordmanager;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -21,7 +20,6 @@ import java.sql.SQLException;
 
 public class SceneController {
 
-    @FXML
     protected void getLoginScene() throws IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         LoginController.currentUserID = -1;
         Parent pane = FXMLLoader.load(getClass().getResource("login.fxml"));
@@ -32,8 +30,7 @@ public class SceneController {
 
     protected void getPasswordManagerScene() throws IOException, SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException {
         if (LoginController.currentUserID == -1) {
-            LoginController loginController = new LoginController();
-            loginController.authorizeUser();
+            LoginController.loginController.authorizeUser();
         }
         if (LoginController.currentUserID == -1) {
             return;
@@ -58,6 +55,13 @@ public class SceneController {
         Application.loadedStage.centerOnScreen();
     }
 
+    protected void getDeletePasswordScene() throws IOException {
+        Parent pane = FXMLLoader.load(getClass().getResource("delete-password.fxml"));
+        Application.loadedStage.getScene().setRoot(pane);
+        Application.loadedStage.sizeToScene();
+        Application.loadedStage.centerOnScreen();
+    }
+
 
     protected void getAboutScene() throws IOException, SQLException {
         Parent pane = FXMLLoader.load(getClass().getResource("about.fxml"));
@@ -66,12 +70,7 @@ public class SceneController {
         Application.loadedStage.centerOnScreen();
     }
 
-    protected void getDeletePasswordScene() throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource("delete-password.fxml"));
-        Application.loadedStage.getScene().setRoot(pane);
-        Application.loadedStage.sizeToScene();
-        Application.loadedStage.centerOnScreen();
-    }
+
 
     protected void getUserInfoScene() throws IOException, SQLException {
         Parent pane = FXMLLoader.load(getClass().getResource("user-info.fxml"));

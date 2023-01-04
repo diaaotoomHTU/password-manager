@@ -1,6 +1,8 @@
 package com.example.passwordmanager;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -10,7 +12,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class Application extends javafx.application.Application {
     static Stage loadedStage;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         String jdbcURL = "jdbc:h2:./h2db";
         String username = "sa";
         String password = "sa";
@@ -35,10 +36,11 @@ public class Application extends javafx.application.Application {
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            // throw new RuntimeException(e);
         }
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        System.out.println(loader.getController().toString());
         scene.getStylesheets().add(Application.class.getResource("styles/nord-light.css").toString());
         loadedStage = stage;
         stage.setTitle("Password Manager");
@@ -47,7 +49,6 @@ public class Application extends javafx.application.Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-        LoginController controller = new LoginController();
     }
 
     static boolean tableExists(Connection connection) throws SQLException {

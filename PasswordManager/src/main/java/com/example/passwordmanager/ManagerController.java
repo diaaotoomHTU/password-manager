@@ -3,12 +3,9 @@ package com.example.passwordmanager;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -27,9 +24,11 @@ import java.sql.SQLException;
 
 public class ManagerController {
 
+
     @FXML
     VBox passwordBox;
 
+    @FXML
     void initialize() throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
         displayAllPasswords();
     }
@@ -81,11 +80,6 @@ public class ManagerController {
         password.setVisible(!password.isVisible());
     }
 
-    protected void getPasswordManagerScene() throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, IOException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException {
-        SceneController sceneController = new SceneController();
-        sceneController.getPasswordManagerScene();
-    }
-
     @FXML
     protected void getUserInfoScene() throws SQLException, IOException {
         SceneController sceneController = new SceneController();
@@ -108,5 +102,17 @@ public class ManagerController {
     protected void getLoginScene() throws IllegalBlockSizeException, NoSuchPaddingException, IOException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         SceneController sceneController = new SceneController();
         sceneController.getLoginScene();
+    }
+
+    @FXML
+    protected void getNewPasswordScene() throws IOException {
+        SceneController sceneController = new SceneController();
+        sceneController.getNewPasswordScene();
+    }
+
+    @FXML
+    protected void getDeletePasswordScene() throws IOException {
+        SceneController sceneController = new SceneController();
+        sceneController.getDeletePasswordScene();
     }
 }
