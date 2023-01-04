@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.Controller">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.AboutController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -35,10 +35,10 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="83.0" text="Developed by Premier Software Solutions" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="90.0" />
+                  <Label layoutX="14.0" layoutY="83.0" text="Developed by example" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="90.0" />
                   <Label layoutX="14.0" layoutY="139.0" text="+123456789" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="150.0" />
-                  <Hyperlink layoutX="14.0" layoutY="267.0" prefHeight="26.0" prefWidth="190.0" text="github.com/diaaotoomHTU" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="270.0" />
-                  <Label layoutX="14.0" layoutY="210.0" text="premier@example.com" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="210.0" />
+                  <Hyperlink layoutX="14.0" layoutY="267.0" prefHeight="26.0" prefWidth="190.0" text="github.com/DiaaOtoomDO" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="270.0" />
+                  <Label layoutX="14.0" layoutY="210.0" text="email@example.com" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="210.0" />
                </children>
             </AnchorPane>
          </content>
