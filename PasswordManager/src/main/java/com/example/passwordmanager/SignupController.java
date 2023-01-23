@@ -67,7 +67,7 @@ public class SignupController {
             return false;
         }
         int length = password.length();
-        return length < 128 && length > 8;
+        return length < 128 && length > 7;
     }
 
     private boolean validateEmail(String email) {

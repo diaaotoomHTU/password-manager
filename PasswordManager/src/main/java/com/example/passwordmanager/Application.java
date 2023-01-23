@@ -1,6 +1,5 @@
 package com.example.passwordmanager;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,12 +21,11 @@ public class Application extends javafx.application.Application {
     static Stage loadedStage;
 
     @Override
-    public void start(Stage stage) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException {
-        String jdbcURL = "jdbc:h2:./h2db";
-        String username = "sa";
-        String password = "sa";
+    public void start(Stage stage) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, SQLException {
+        // Uncomment to clean database
+        // Application.dropAllTables();
         try {
-            Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+            Connection connection = LoginController.getConnection();
             System.out.println("connected");
             boolean test = Application.tableExists(connection);
             System.out.println(test);
@@ -73,10 +71,11 @@ public class Application extends javafx.application.Application {
 
     static void dropAllTables() throws SQLException {
         Connection connection = LoginController.getConnection();
-        PreparedStatement dropQuery = connection.prepareStatement("DROP TABLE pm_users");
+        PreparedStatement dropQuery = connection.prepareStatement("DROP TABLE passwords");
         dropQuery.execute();
-        dropQuery = connection.prepareStatement("DROP TABLE passwords");
+        dropQuery = connection.prepareStatement("DROP TABLE pm_users");
         dropQuery.execute();
+
     }
 
     // local jdbc dir

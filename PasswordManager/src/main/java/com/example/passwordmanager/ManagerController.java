@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -48,6 +49,8 @@ public class ManagerController {
             newPasswordEntryChildren.add(imageView);
             AnchorPane.setLeftAnchor(imageView, 14.0);
             AnchorPane.setTopAnchor(imageView, 25.0);
+            Image image = new Image(resultSet.getString(5));
+            imageView.setImage(image);
             Label websiteLabel = new Label(resultSet.getString(3));
             AnchorPane.setTopAnchor(websiteLabel, 36.0);
             AnchorPane.setLeftAnchor(websiteLabel, 75.0);

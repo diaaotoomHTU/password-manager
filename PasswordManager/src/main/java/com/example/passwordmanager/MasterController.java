@@ -69,7 +69,7 @@ public class MasterController {
             PreparedStatement updatePassQuery = connection.prepareStatement("UPDATE passwords SET password=? WHERE pm_user_id=? AND password=?");
             updatePassQuery.setString(1, ManagerSecurity.encrypt(newMasterPassword, ManagerSecurity.decrypt(oldMasterPassword, password)));
             updatePassQuery.setInt(2, userID);
-            updatePassQuery.setString(3, resultSet.getString(4));
+            updatePassQuery.setString(3, password);
             updatePassQuery.execute();
         }
         return true;

@@ -7,6 +7,7 @@ import javafx.stage.FileChooser;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.io.File;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -29,17 +30,21 @@ public class NewController {
 
 
     @FXML
-    protected  void getImage() {
+    protected void getImage() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png"));
-        String selectedFile = fileChooser.showOpenDialog(Application.loadedStage).toString();
-        newPasswordImage.insertText(0, selectedFile);
+        File file = fileChooser.showOpenDialog(Application.loadedStage);
+        if (file != null) {
+            newPasswordImage.insertText(0, file.toString());
+        }
     }
 
     @FXML
     protected void addNewPasswordFXML() throws IOException, SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
         boolean result = addNewPassword(LoginController.currentUserID, newPasswordName.getText(), newPassword.getText(), newPasswordImage.getText());
-        getPasswordManagerScene();
+        if (result) {
+            getPasswordManagerScene();
+        }
     }
 
     private boolean addNewPassword(int userID, String newPasswordName, String newPassword, String newPasswordImage) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
