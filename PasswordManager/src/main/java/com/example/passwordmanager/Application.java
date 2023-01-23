@@ -69,7 +69,7 @@ public class Application extends javafx.application.Application {
         insertBob.execute();
     }
 
-    static void dropAllTables() throws SQLException {
+    public static void dropAllTables() throws SQLException {
         Connection connection = LoginController.getConnection();
         PreparedStatement dropQuery = connection.prepareStatement("DROP TABLE passwords");
         dropQuery.execute();

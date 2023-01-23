@@ -43,7 +43,7 @@ public class SignupController {
         }
     }
 
-    private boolean validateUsername(String username) throws SQLException {
+    public boolean validateUsername(String username) throws SQLException {
         if (username == null) {
             return false;
         }
@@ -51,7 +51,7 @@ public class SignupController {
         return !usernameTaken(username) && length < 31 && length > 2;
     }
 
-    private boolean usernameTaken(String username) throws SQLException {
+    public boolean usernameTaken(String username) throws SQLException {
         Connection connection = LoginController.getConnection();
         PreparedStatement usernameQuery = connection.prepareStatement("SELECT * FROM pm_users WHERE username = ?");
         usernameQuery.setString(1, username);
@@ -62,7 +62,7 @@ public class SignupController {
         return false;
     }
 
-    private boolean validatePassword(String password) {
+    public boolean validatePassword(String password) {
         if (password == null) {
             return false;
         }
@@ -70,7 +70,7 @@ public class SignupController {
         return length < 128 && length > 7;
     }
 
-    private boolean validateEmail(String email) {
+    public boolean validateEmail(String email) {
         if (email == null) {
             return false;
         }
@@ -78,7 +78,7 @@ public class SignupController {
         return length > 3 && email.contains("@");
     }
 
-    private boolean addNewUser(String username, String password, String confirmPassword, String name, String email, String role) throws IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SQLException {
+    public boolean addNewUser(String username, String password, String confirmPassword, String name, String email, String role) throws IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SQLException {
         boolean valid = validateUsername(username) && validatePassword(password) && validateEmail(email) && password.equals(confirmPassword);
         if (!valid) {
             return false;

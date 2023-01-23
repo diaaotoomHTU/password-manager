@@ -49,7 +49,7 @@ public class LoginController {
         }
     }
 
-    private  boolean authorizeUser(String username, String password) throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, IOException {
+    public boolean authorizeUser(String username, String password) throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, IOException {
         Connection connection = getConnection();
         PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM pm_users WHERE username=? AND master_password=?");
         userQuery.setString(1, username);
@@ -66,13 +66,13 @@ public class LoginController {
 
 
     @FXML
-    protected  void getPasswordManagerScene() throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, IOException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException {
+    protected void getPasswordManagerScene() throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, IOException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException {
         SceneController sceneController = new SceneController();
         sceneController.getPasswordManagerScene();
     }
 
     @FXML
-    protected  void getSignupScene() throws IOException {
+    protected void getSignupScene() throws IOException {
         SceneController sceneController = new SceneController();
         sceneController.getSignupScene();
     }

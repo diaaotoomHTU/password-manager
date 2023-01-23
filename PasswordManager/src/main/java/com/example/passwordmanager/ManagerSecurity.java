@@ -17,7 +17,7 @@ import java.util.Base64;
 
 public class ManagerSecurity {
 
-    static String getMasterPass(int userID) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
+    public static String getMasterPass(int userID) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
         Connection connection = LoginController.getConnection();
         PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM pm_users WHERE id=?");
         userQuery.setInt(1, userID);

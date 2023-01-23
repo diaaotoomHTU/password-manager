@@ -30,7 +30,7 @@ public class DeleteController {
         }
     }
 
-    private  boolean deletePassword(int userID, String passwordName, String password) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
+    public  boolean deletePassword(int userID, String passwordName, String password) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
         if (!passwordExists(userID, passwordName, password)) {
             return  false;
         }
@@ -44,10 +44,10 @@ public class DeleteController {
         return true;
     }
 
-    private boolean passwordExists(int userID, String passwordName, String password) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
+    public boolean passwordExists(int userID, String passwordName, String password) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
         Connection connection = LoginController.getConnection();
         String masterPass = ManagerSecurity.getMasterPass(userID);
-        password = ManagerSecurity.encrypt(masterPass, confirmPassword.getText());
+        password = ManagerSecurity.encrypt(masterPass, password);
         PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM passwords WHERE pm_user_id=? AND password_name =? AND password=?");
         userQuery.setInt(1, userID);
         userQuery.setString(2, passwordName);
