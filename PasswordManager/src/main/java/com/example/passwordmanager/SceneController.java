@@ -28,6 +28,13 @@ public class SceneController {
         Application.loadedStage.centerOnScreen();
     }
 
+    protected void getSignupScene() throws IOException{
+        Parent pane = FXMLLoader.load(getClass().getResource("signup.fxml"));
+        Application.loadedStage.getScene().setRoot(pane);
+        Application.loadedStage.sizeToScene();
+        Application.loadedStage.centerOnScreen();
+    }
+
     protected void getPasswordManagerScene() throws IOException, SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException {
         if (LoginController.currentUserID == -1) {
             LoginController.loginController.authorizeUser();

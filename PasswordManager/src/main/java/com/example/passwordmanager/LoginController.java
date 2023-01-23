@@ -60,6 +60,11 @@ public class LoginController {
         sceneController.getPasswordManagerScene();
     }
 
+    @FXML
+    protected  void getSignupScene() throws IOException {
+        SceneController sceneController = new SceneController();
+        sceneController.getSignupScene();
+    }
 
 
 }

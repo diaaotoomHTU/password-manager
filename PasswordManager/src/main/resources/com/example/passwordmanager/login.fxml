@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="263.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.LoginController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.LoginController">
    <children>
       <AnchorPane prefHeight="292.0" prefWidth="311.0">
          <children>
@@ -21,7 +21,8 @@
             <TextField fx:id="username" layoutX="63.0" layoutY="78.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="78.0" />
             <Label layoutX="61.0" layoutY="122.0" text="Password" AnchorPane.leftAnchor="63.0" />
             <PasswordField fx:id="password" layoutX="63.0" layoutY="142.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="142.0" />
-            <Button layoutX="63.0" layoutY="197.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getPasswordManagerScene" prefHeight="36.0" prefWidth="181.0" text="Login" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="63.0" />
+            <Button layoutX="63.0" layoutY="200.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getPasswordManagerScene" prefHeight="36.0" prefWidth="181.0" text="Login" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="63.0" />
+            <Button layoutX="63.0" layoutY="253.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSignupScene" prefHeight="36.0" prefWidth="181.0" text="Signup" />
          </children>
       </AnchorPane>
    </children>
