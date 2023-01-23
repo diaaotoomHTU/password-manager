@@ -71,6 +71,14 @@ public class Application extends javafx.application.Application {
         insertBob.execute();
     }
 
+    static void dropAllTables() throws SQLException {
+        Connection connection = LoginController.getConnection();
+        PreparedStatement dropQuery = connection.prepareStatement("DROP TABLE pm_users");
+        dropQuery.execute();
+        dropQuery = connection.prepareStatement("DROP TABLE passwords");
+        dropQuery.execute();
+    }
+
     // local jdbc dir
     // jdbc:h2:C:/Users/diaao/Desktop/Software Development Lifecycles/Assignment/Development/Code/password-manager/PasswordManager/h2db
 

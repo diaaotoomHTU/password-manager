@@ -20,7 +20,7 @@
             <Label layoutX="63.0" layoutY="58.0" text="Username" AnchorPane.leftAnchor="63.0" />
             <TextField fx:id="newUsername" layoutX="63.0" layoutY="78.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="80.0" />
             <Label layoutX="63.0" layoutY="130.0" text="Password" AnchorPane.leftAnchor="63.0" />
-            <Button layoutX="199.0" layoutY="294.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addNewUser" prefHeight="36.0" prefWidth="181.0" text="Create Account" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="199.0" />
+            <Button layoutX="199.0" layoutY="294.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addNewUserFXML" prefHeight="36.0" prefWidth="181.0" text="Create Account" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="199.0" />
             <Label layoutX="66.0" layoutY="199.0" text="Confirm Password" />
             <PasswordField fx:id="newPasswordConfirmation" layoutX="64.0" layoutY="223.0" AnchorPane.topAnchor="220.0" />
             <PasswordField fx:id="newPassword" layoutX="63.0" layoutY="159.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="150.0" />

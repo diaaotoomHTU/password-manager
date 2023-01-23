@@ -36,22 +36,64 @@ public class SignupController {
 
 
     @FXML
-    protected void addNewUser() throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException, IOException {
-        if (!newPassword.getText().equals(newPasswordConfirmation.getText())) {
-            return;
+    protected void addNewUserFXML() throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException, IOException {
+        boolean result = addNewUser(newUsername.getText(), newPassword.getText(), newPasswordConfirmation.getText(), name.getText(), email.getText(), role.getText());
+        if (result) {
+            getLoginScene();
         }
-        Connection connection = LoginController.getConnection();
-        String masterPass = ManagerSecurity.encrypt("masterpassword12", newPassword.getText());
-        PreparedStatement insertUser = connection.prepareStatement("INSERT INTO pm_users (USERNAME, NAME, EMAIL, ROLE, MASTER_PASSWORD) VALUES (?, ?, ?, ?, ?)");
-        insertUser.setString(1, newUsername.getText());
-        insertUser.setString(2, name.getText());
-        insertUser.setString(3, email.getText());
-        insertUser.setString(4, role.getText());
-        insertUser.setString(5, masterPass);
-        insertUser.execute();
-        getLoginScene();
     }
 
+    private boolean validateUsername(String username) throws SQLException {
+        if (username == null) {
+            return false;
+        }
+        int length = username.length();
+        return !usernameTaken(username) && length < 31 && length > 2;
+    }
+
+    private boolean usernameTaken(String username) throws SQLException {
+        Connection connection = LoginController.getConnection();
+        PreparedStatement usernameQuery = connection.prepareStatement("SELECT * FROM pm_users WHERE username = ?");
+        usernameQuery.setString(1, username);
+        ResultSet resultSet = usernameQuery.executeQuery();
+        if (resultSet.next()) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validatePassword(String password) {
+        if (password == null) {
+            return false;
+        }
+        int length = password.length();
+        return length < 128 && length > 8;
+    }
+
+    private boolean validateEmail(String email) {
+        if (email == null) {
+            return false;
+        }
+        int length = email.length();
+        return length > 3 && email.contains("@");
+    }
+
+    private boolean addNewUser(String username, String password, String confirmPassword, String name, String email, String role) throws IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SQLException {
+        boolean valid = validateUsername(username) && validatePassword(password) && validateEmail(email) && password.equals(confirmPassword);
+        if (!valid) {
+            return false;
+        }
+        Connection connection = LoginController.getConnection();
+        String masterPass = ManagerSecurity.encrypt("masterpassword12", password);
+        PreparedStatement insertUser = connection.prepareStatement("INSERT INTO pm_users (USERNAME, NAME, EMAIL, ROLE, MASTER_PASSWORD) VALUES (?, ?, ?, ?, ?)");
+        insertUser.setString(1, username);
+        insertUser.setString(2, name);
+        insertUser.setString(3, email);
+        insertUser.setString(4, role);
+        insertUser.setString(5, masterPass);
+        insertUser.execute();
+        return true;
+    }
 
     @FXML
     protected void getLoginScene() throws IllegalBlockSizeException, NoSuchPaddingException, IOException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {

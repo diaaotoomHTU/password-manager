@@ -40,16 +40,27 @@ public class LoginController {
         return connection;
     }
 
-    protected void authorizeUser() throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException {
+    @FXML
+    protected void authorizeUserFXML() throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, IOException {
+        boolean result = authorizeUser(username.getText(), password.getText());
+        if (result) {
+            SceneController sceneController = new SceneController();
+            sceneController.getPasswordManagerScene();
+        }
+    }
+
+    private  boolean authorizeUser(String username, String password) throws SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, IOException {
         Connection connection = getConnection();
         PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM pm_users WHERE username=? AND master_password=?");
-        userQuery.setString(1, username.getText());
-        userQuery.setString(2, ManagerSecurity.encrypt("masterpassword12", password.getText()));
+        userQuery.setString(1, username);
+        userQuery.setString(2, ManagerSecurity.encrypt("masterpassword12", password));
         ResultSet resultSet = userQuery.executeQuery();
-        if (resultSet.next()) {
-            currentUserID = resultSet.getInt(1);
+        if (!resultSet.next()) {
+            return false;
         }
+        currentUserID = resultSet.getInt(1);
         connection.close();
+        return true;
     }
 
 

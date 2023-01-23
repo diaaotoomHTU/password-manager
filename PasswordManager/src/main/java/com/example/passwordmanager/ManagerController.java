@@ -37,7 +37,7 @@ public class ManagerController {
         PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM passwords WHERE pm_user_id=?");
         userQuery.setInt(1, LoginController.currentUserID);
         ResultSet resultSet = userQuery.executeQuery();
-        String masterPass = ManagerSecurity.getMasterPass();
+        String masterPass = ManagerSecurity.getMasterPass(LoginController.currentUserID);
         while (resultSet.next()) {
             // Formatting password entries
             AnchorPane newPasswordEntry = new AnchorPane();

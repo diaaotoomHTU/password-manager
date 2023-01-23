@@ -36,12 +36,6 @@ public class SceneController {
     }
 
     protected void getPasswordManagerScene() throws IOException, SQLException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException {
-        if (LoginController.currentUserID == -1) {
-            LoginController.loginController.authorizeUser();
-        }
-        if (LoginController.currentUserID == -1) {
-            return;
-        }
         Parent pane = FXMLLoader.load(getClass().getResource("password-manager.fxml"));
         Application.loadedStage.getScene().setRoot(pane);
         Application.loadedStage.sizeToScene();

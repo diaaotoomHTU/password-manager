@@ -17,13 +17,15 @@ import java.util.Base64;
 
 public class ManagerSecurity {
 
-    static String getMasterPass() throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
+    static String getMasterPass(int userID) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
         Connection connection = LoginController.getConnection();
         PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM pm_users WHERE id=?");
-        userQuery.setInt(1, LoginController.currentUserID);
+        userQuery.setInt(1, userID);
         ResultSet resultSet = userQuery.executeQuery();
-        resultSet.next();
-        return decrypt("masterpassword12", resultSet.getString(6));
+        if (resultSet.next()) {
+            return decrypt("masterpassword12", resultSet.getString(6));
+        }
+        return "none";
     }
 
 

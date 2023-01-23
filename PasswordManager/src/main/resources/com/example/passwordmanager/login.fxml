@@ -21,7 +21,7 @@
             <TextField fx:id="username" layoutX="63.0" layoutY="78.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="78.0" />
             <Label layoutX="61.0" layoutY="122.0" text="Password" AnchorPane.leftAnchor="63.0" />
             <PasswordField fx:id="password" layoutX="63.0" layoutY="142.0" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="142.0" />
-            <Button layoutX="63.0" layoutY="200.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getPasswordManagerScene" prefHeight="36.0" prefWidth="181.0" text="Login" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="63.0" />
+            <Button layoutX="63.0" layoutY="200.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#authorizeUserFXML" prefHeight="36.0" prefWidth="181.0" text="Login" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="63.0" />
             <Button layoutX="63.0" layoutY="253.0" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSignupScene" prefHeight="36.0" prefWidth="181.0" text="Signup" />
          </children>
       </AnchorPane>

@@ -37,16 +37,31 @@ public class NewController {
     }
 
     @FXML
-    protected void addNewPassword() throws IOException, SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
-        Connection connection = LoginController.getConnection();
-        String masterPass = ManagerSecurity.getMasterPass();
-        PreparedStatement insertPassword = connection.prepareStatement("INSERT INTO passwords (pm_user_id, password_name, password, image) VALUES (?, ?, ?, ?)");
-        insertPassword.setInt(1, LoginController.currentUserID);
-        insertPassword.setString(2, newPasswordName.getText());
-        insertPassword.setString(3, ManagerSecurity.encrypt(masterPass, newPassword.getText()));
-        insertPassword.setString(4, newPasswordImage.getText());
-        insertPassword.execute();
+    protected void addNewPasswordFXML() throws IOException, SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException {
+        boolean result = addNewPassword(LoginController.currentUserID, newPasswordName.getText(), newPassword.getText(), newPasswordImage.getText());
         getPasswordManagerScene();
+    }
+
+    private boolean addNewPassword(int userID, String newPasswordName, String newPassword, String newPasswordImage) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
+        if (!validatePassword(newPassword)) {
+            return false;
+        }
+        Connection connection = LoginController.getConnection();
+        String masterPass = ManagerSecurity.getMasterPass(userID);
+        PreparedStatement insertPassword = connection.prepareStatement("INSERT INTO passwords (pm_user_id, password_name, password, image) VALUES (?, ?, ?, ?)");
+        insertPassword.setInt(1, userID);
+        insertPassword.setString(2, newPasswordName);
+        insertPassword.setString(3, ManagerSecurity.encrypt(masterPass, newPassword));
+        insertPassword.setString(4, newPasswordImage);
+        insertPassword.execute();
+        return true;
+    }
+
+    private boolean validatePassword(String password) {
+        if (password == null || password.length() < 8) {
+            return false;
+        }
+        return true;
     }
 
     @FXML
