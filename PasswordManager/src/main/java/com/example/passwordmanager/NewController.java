@@ -49,7 +49,7 @@ public class NewController {
     }
 
     public boolean addNewPassword(int userID, String newPasswordName, String newPassword, String newPasswordImage) throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
-        if (!validatePassword(newPassword) || !userExists(userID)) {
+        if (!validatePassword(newPassword) || !userExists(userID) || passwordNameTaken(userID, newPasswordName)) {
             return false;
         }
         Connection connection = LoginController.getConnection();
@@ -73,6 +73,19 @@ public class NewController {
         }
         return false;
     }
+
+    public boolean passwordNameTaken(int userID, String password) throws SQLException {
+        Connection connection = LoginController.getConnection();
+        PreparedStatement userQuery = connection.prepareStatement("SELECT * FROM passwords WHERE pm_user_id = ? AND password_name = ?");
+        userQuery.setInt(1, userID);
+        userQuery.setString(2, password);
+        ResultSet resultSet = userQuery.executeQuery();
+        if (resultSet.next()) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean validatePassword(String password) {
         if (password == null || password.length() < 8 || password.length() > 127) {
             return false;
