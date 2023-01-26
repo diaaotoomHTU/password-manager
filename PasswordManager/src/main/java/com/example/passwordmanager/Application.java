@@ -23,7 +23,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidKeySpecException, SQLException {
         // Uncomment to clean database
-        Application.dropAllTables();
+        // Application.dropAllTables();
         try {
             Connection connection = LoginController.getConnection();
             System.out.println("connected");
