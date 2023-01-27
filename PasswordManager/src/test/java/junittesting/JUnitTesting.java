@@ -38,6 +38,7 @@ class JUnitTesting {
         assertEquals(deleteController.passwordExists(1, "pass", "12345678"), false);
         assertEquals(deleteController.passwordExists(3, "Password", "1234"), false);
         assertEquals(deleteController.deletePassword(1, "New Password", "LgjTaxQIqzkIt3KJFevT4QXWpKkBLByZmmpZWoCKd1X8Y0A0WZY0q93JtgR8XBZf93EoL5GPvkkfmeUgiPgwxDJglgYaTCuG44JjPetYoNpgOjp3bzwY05lbdtuHj5dA"), false);
+        // assertEquals(deleteController.passwordExists(1, "pass", "12345678"), true);
     }
 
     @Test
@@ -53,6 +54,7 @@ class JUnitTesting {
         assertEquals(signupController.validateUsername("ab"), false);
         assertEquals(signupController.validateEmail("a@a"), false);
         assertEquals(signupController.validateEmail("a@ab"), true);
+        assertEquals(signupController.validateEmail("abab"), true);
         // 40 char length
         assertEquals(signupController.validateEmail("AuY3iBf65eFRcLv1KzvAj@rGCgPRkLxOBdoEXQUu"), true);
         // 41 char length
@@ -72,6 +74,7 @@ class JUnitTesting {
     void testManagerSecurity() throws SQLException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeySpecException, InvalidKeyException {
         ManagerSecurity managerSecurity = new ManagerSecurity();
         assertEquals(ManagerSecurity.getMasterPass(1), "12345678");
+        assertEquals(ManagerSecurity.getMasterPass(3), "none");
     }
 
 }
