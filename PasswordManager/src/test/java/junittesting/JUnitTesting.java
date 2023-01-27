@@ -29,6 +29,7 @@ class JUnitTesting {
         // 128 chars
         assertEquals(newController.validatePassword("LgjTaxQIqzkIt3KJFevT4QXWpKkBLByZmmpZWoCKd1X8Y0A0WZY0q93JtgR8XBZf93EoL5GPvkkfmeUgiPgwxDJglgYaTCuG44JjPetYoNpgOjp3bzwY05lbdtuHj5dA"), false);
         assertEquals(newController.addNewPassword(1, "New Password", "12345678", null), true);
+        // assertEquals(newController.addNewPassword(1, "New Password", "12345678", null), true);
         assertEquals(newController.addNewPassword(3, "New Password", "12345678", ""), false);
     }
 
@@ -54,7 +55,7 @@ class JUnitTesting {
         assertEquals(signupController.validateUsername("ab"), false);
         assertEquals(signupController.validateEmail("a@a"), false);
         assertEquals(signupController.validateEmail("a@ab"), true);
-        assertEquals(signupController.validateEmail("abab"), true);
+        assertEquals(signupController.validateEmail("abab"), false);
         // 40 char length
         assertEquals(signupController.validateEmail("AuY3iBf65eFRcLv1KzvAj@rGCgPRkLxOBdoEXQUu"), true);
         // 41 char length
