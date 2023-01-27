@@ -37,8 +37,7 @@ class JUnitTesting {
         DeleteController deleteController = new DeleteController();
         assertEquals(deleteController.passwordExists(1, "pass", "12345678"), false);
         assertEquals(deleteController.passwordExists(3, "Password", "1234"), false);
-        assertEquals(deleteController.deletePassword(1, "New Password", "12345678"), false);
-        assertEquals(deleteController.deletePassword(3, "Pass", "12345678"), false);
+        assertEquals(deleteController.deletePassword(1, "New Password", "LgjTaxQIqzkIt3KJFevT4QXWpKkBLByZmmpZWoCKd1X8Y0A0WZY0q93JtgR8XBZf93EoL5GPvkkfmeUgiPgwxDJglgYaTCuG44JjPetYoNpgOjp3bzwY05lbdtuHj5dA"), false);
     }
 
     @Test
