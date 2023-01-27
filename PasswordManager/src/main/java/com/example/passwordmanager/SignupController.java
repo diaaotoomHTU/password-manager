@@ -75,7 +75,7 @@ public class SignupController {
             return false;
         }
         int length = email.length();
-        return length > 3 && email.contains("@");
+        return length > 3 && length < 41 && email.contains("@");
     }
 
     public boolean addNewUser(String username, String password, String confirmPassword, String name, String email, String role) throws IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SQLException {
